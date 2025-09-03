@@ -14,6 +14,9 @@ class DataBuilder():
 
     def get_dataset_2021(self):
 
+        """Method to download and store 2021 Canadian census data
+        """
+
         # retrieve file locations and data query string from config file
         self.config.read('config.cfg')
         query_string = self.config['querys']['QUERY_URL_2021']
