@@ -1,11 +1,13 @@
 # Aggregation of Harmonized Census Data 
 
+The following commands can be run from the terminal to complete the data aggregation process:
 ## Install package requirements
 ```pip install -r requirements.txt```
 
 ## Run Data Aggregation process
 ```python -m gather_data.py```
 
+Optional:
 ## Run Streamlit Application Locally
 ```streamlit run app.py```
 
