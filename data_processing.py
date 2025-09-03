@@ -6,6 +6,8 @@ from zipfile import ZipFile
 from configparser import ConfigParser
 import ast
 from typing import Tuple
+import numpy as np
+
 
 class DataBuilder():
     def __init__(self):
@@ -182,6 +184,9 @@ class DataBuilder():
         # arrange demographic variables in columns and group the variables into their parent census tract
         long_data = long_data.pivot_table(index = ['ALT_GEO_CODE', 'CENSUS_YEAR', 'AGGREGATE_CT'], columns = ['CHARACTERISTIC_NAME'], values = 'C1_COUNT_TOTAL').reset_index()
         agg_data = long_data.drop(columns = 'ALT_GEO_CODE').groupby(['AGGREGATE_CT', 'CENSUS_YEAR']).median().reset_index()
+
+        for column in agg_data.columns[2:]:
+            agg_data[column] = agg_data[column].map(lambda x: np.round(x, 3), na_action='ignore')
         return agg_data
 
 
